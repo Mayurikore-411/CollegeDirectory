@@ -1,0 +1,27 @@
+<!-- student_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <h1 id="welcome-message"></h1>
+    <img id="profile-photo" src="" alt="Profile Photo">
+    <p id="student-year"></p>
+    <p id="student-department"></p>
+
+    <script>
+        // Fetch student profile
+        fetch('/student/profile')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('welcome-message').textContent = `Welcome, ${data.user.name}`;
+                document.getElementById('profile-photo').src = data.photo;
+                document.getElementById('student-year').textContent = `Year: ${data.year}`;
+                document.getElementById('student-department').textContent = `Department: ${data.department.name}`;
+            });
+    </script>
+</body>
+</html>
